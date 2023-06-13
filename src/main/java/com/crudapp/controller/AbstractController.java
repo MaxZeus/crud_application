@@ -2,27 +2,36 @@ package com.crudapp.controller;
 
 import com.crudapp.model.Writer;
 import com.crudapp.repository.GenericRepository;
+import com.crudapp.view.ViewInterface;
+
+import java.util.List;
 
 public abstract class AbstractController <T, ID>{
     GenericRepository<T, ID> genericRepository;
+    ViewInterface<T> tViewInterface;
 
-    public void setGenericRepository(GenericRepository<T, ID> genericRepository) {
+    public void setGenericRepositoryAndView(GenericRepository<T, ID> genericRepository, ViewInterface<T> tViewInterface) {
         this.genericRepository = genericRepository;
+        this.tViewInterface = tViewInterface;
     }
 
     public void create() {
         genericRepository.create();
     }
-    public T read() {
+    public void read() {
+        tViewInterface.show(genericRepository.read());
+    }
+    public void update(ID id) {
+        genericRepository.update(id);
+    }
+    public void delete(ID id) {
+        genericRepository.delete(id);
+    }
+    public void save() {genericRepository.save();}
+    public void setStatus(T t) {
+       genericRepository.setStatus(t);
+    }
+    public List<T> getList() {
         return genericRepository.read();
-    }
-    public void update() {
-        genericRepository.update();
-    }
-    public void delete() {
-        genericRepository.delete();
-    }
-    public void setStatus() {
-       genericRepository.setStatus();
     }
 }

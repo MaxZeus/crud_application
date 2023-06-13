@@ -6,5 +6,5 @@ import com.crudapp.model.Post;
 import java.util.List;
 
 public interface PostRepository extends GenericRepository<Post, Integer>{
-        void addLabelList(List<Label> labelList);
+        void addLabelList(List<Label> labelList, Integer postNumber);
 }

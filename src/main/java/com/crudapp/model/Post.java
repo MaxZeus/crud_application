@@ -17,5 +17,4 @@ public class Post {
     private String updated;
     private List<Label> labels;
     PostStatus status;
-
 }
