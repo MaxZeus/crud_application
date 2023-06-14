@@ -1,12 +1,31 @@
 package com.crudapp.view;
 
+import com.crudapp.controller.LabelController;
 import com.crudapp.model.Label;
 
-import java.util.List;
+import java.util.Scanner;
 
-public class LabelView implements ViewInterface<Label> {
-    @Override
-    public void show(List<Label> list) {
-        list.forEach(label -> System.out.printf("Label ID: %d\nLabel name: %s\nLabel status: %s\n", label.getId(), label.getName(), label.getStatus()));
+public class LabelView  {
+
+    private final Scanner scanner = new Scanner(System.in);
+    private final LabelController labelController = new LabelController();
+
+    public void save() {
+        System.out.println("enter name");
+        String name = scanner.nextLine();
+        Label result = labelController.saveLabel(name);
+        System.out.println(result);
+    }
+    public void readAll() {
+        labelController.readLabels().forEach(System.out::print);
+    }
+    public void read(Integer index) {
+        System.out.println(labelController.readLabel(index));
+    }
+    public void update(Integer index) {
+        System.out.println(labelController.updateLabel(index));
+    }
+    public void delete(Integer index) {
+        System.out.println(labelController.deleteLabel(index));
     }
 }

@@ -14,5 +14,4 @@ public class Writer {
     private String lastName;
     private List<Post> posts;
     private Status status;
-
 }
